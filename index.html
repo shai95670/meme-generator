@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Meme Generator</title>
+</head>
+<body>
+    <nav class="main-nav-container main-nav-container-bg flex space-between align-vert-center">
+        <header class="logo">
+            <img src="img/logo/LOGO.png" alt="" srcset="">
+        </header>
+        
+        <ul class="clean-list flex main-nav-links">
+            <li><a href="">gallery</a></li>
+            <li><a onclick='renderSavedMemes()'>Memes</a></li> 
+        </ul>
+    </nav>
+
+    <section class="filter-container flex space-around align-vert-center">
+        <input oninput='onSetSearch(this.value)' class='search-filter' type="search" name="gsearch" placeholder="Enter search keyword">
+        <ul class='flex clean-list'>
+            <li><a class='filter-funny' onclick='onSetFilter(event)' href="#">funny</a></li>
+            <li><a class='filter-comics' onclick='onSetFilter(event)' href="#">comics</a></li>
+            <li><a class='filter-dogs' onclick='onSetFilter(event)' href="#">dogs</a></li>
+            <li><a class='filter-drinks' onclick='onSetFilter(event)' href="#">drinks</a></li>
+            <li><a class='filter-books' onclick='onSetFilter(event)' href="#">books</a></li>
+            <li><a onclick='onSetFilter(event)' href="">more...</a></li>
+        </ul>
+    </section>
+    
+    <main class="gallery">
+        <div class="gallery-container flex align-horizontal flex-wrap">
+        </div>
+    </main>
+
+    <main class="saved-meme-gallery hidden">
+        <div class="gallery-container flex align-horizontal flex-wrap">
+        </div>
+    </main>
+    
+    <main class="meme-editor-container hide flex space-around">
+        <canvas class="meme-editor" style="width: 500px;height: 500px;"></canvas>
+        <div class="controllers-container">
+            <div class="line-operations-container flex column flex-wrap controller-0">
+                <textarea class='text-input input-0 margin-bot' type="text"></textarea>
+                <div class="flex flex-wrap"> 
+                    <div class="flex align-horizontal span-all-line margin-bot">
+                        <button  onclick='onMoveLine(-5)'>
+                        &#x2B06;
+                        </button>
+                        <button  onclick='onMoveLine(5)'>
+                        &#x2B07;
+                        </button>
+                        <button onclick='onSwitchLines(1)' oncontextmenu='onSwitchLines(-1);return false'>
+                            <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+                        </button>
+                        <button onclick="onAddRow()">
+                            <img src="ICONS/add.png" alt="">
+                        </button>
+                        <button onclick='onDeleteLine()'>
+                            <img src="ICONS/trash.png" alt="">
+                        </button>
+                    </div>
+                    <div class="flex align-horizontal span-all-line margin-bot">
+                        <button onclick='onFontSizeChange(-1)'>
+                            <img src="ICONS/decrease font - icon.png" alt="">
+                        </button>
+                        <button onclick='onFontSizeChange(1)'>
+                            <img src="ICONS/increase font - icon.png" alt="">
+                        </button>
+                        <button onclick="onAlignText('left')">
+                            <img src="ICONS/align-to-left.png" alt="">
+                        </button>
+                        <button onclick="onAlignText('center')">
+                            <img src="ICONS/center-text-alignment.png" alt="">
+                        </button>
+                        <button onclick="onAlignText('right')">
+                            <img src="ICONS/align-to-right.png" alt="">
+                        </button>
+                    </div>
+                    <div class="flex align-horizontal span-all-line margin-bot">
+                        <button>
+                            <input onchange="onColorChange(this.value)" type="color">
+                        </button>
+                        <button>
+                            <input onchange="onStrokeColorChange(this.value)" type="color">
+                        </button>
+                        <select class='font-selector' onchange="onChangeFont()">
+                            <option value="Arial">arial</option>
+                            <option value="Verdana">verdana</option>
+                            <option value="Courier New">courier new</option>
+                        </select> 
+                    </div>
+                </div>
+                <div class="flex align-horizontal span-all-line margin-bot">
+                    <a href="#" onclick="onDownloadImg(this)" download="meme.jpg" class='download-btn'>Download</a>
+                    <button onclick="onSaveMeme()">
+                        <i class="fa fa-save" style="font-size:36px;"></i>
+                    </button>
+                </div>
+                <input type="file" class="upload-btn" name="image" onchange="onImgInput(event)" />
+                <div class="emoji-container">
+                   <div class="emoji" onclick="addEmoji()">😀</div>
+                   <div>
+                       <input oninput='changeSymbol(event)' class='emoji-input' type="range" value='0' min="0" max="8" step="1">
+                   </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="site-footer main-nav-container-bg flex align-vert-center align-horizontal">
+        <div class="footer-content flex column align-vert-center">
+            <header class="logo">
+                <img src="img/logo/LOGO.png" alt="" srcset="">
+            </header>
+            <p>All rights reserved 2020</p>
+        </div>
+    </footer>
+    <script src="js/upload-service.js"></script>
+    <script src="js/local-storage-service.js"></script>
+    <script src="js/canvas-service.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
