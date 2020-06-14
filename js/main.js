@@ -20,13 +20,13 @@ function onAddRow() {
   renderImg()
 }
 
-function addEmoji() {
+function onAddEmoji() {
   var emojiEl = document.querySelector('.emoji')
   addMemeText(emojiEl.innerText, 30, 'center', 'red')
   renderImg()
 }
 
-function changeSymbol(ev) {
+function onChangeSymbol(ev) {
   var emojiEl = document.querySelector('.emoji')
   var emojies = ['😀', '🤣', '🤬', '🥶', '😱', '👽', '⚰️', '💣']
   var rangeVal = ev.target.value
